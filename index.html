@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Guess What</title>
+    <link href="https://fonts.googleapis.com/css2?family=Yellowtail&display=swap" rel="stylesheet">
+    <style>
+      button {
+        border: 1px solid black;
+        border-radius: 4px;
+        padding: 10px 20px;
+        font-size: 1rem;
+        text-align: center;
+        background-color: white;
+        margin-top: 30px;
+        margin-right: 20px;
+      }
+      button:active {
+        background-color: #333333;
+        color: white;
+        border: none;
+      }
+      button:checked {
+        background-color: #333333;
+        color: white;
+        border: none;
+      }
+
+      div {
+        background-color: lightgrey;
+        height: 100px;
+        width: 25%;
+        float: left;
+        text-align: center;
+        color: white;
+        font: 3em 'Yellowtail', cursive;
+      }
+
+      .myAnswer{
+          display: none;
+      }
+     
+    </style>
+  </head>
+  <body>
+    <section>
+        
+    </section>
+    <button id="answer" onclick="showAnswer()">Show answer</button>
+    <button id="reset">Reset</button>
+    <p class="myAnswer">彩虹,英文是rainbow.</p>
+
+
+    <script>
+
+    const btnReset = document.getElementById('reset');
+    const content = document.querySelector('section');
+
+
+      let answerText = '彩虹,英文是';
+      let answerWord = 'rainbow';
+      var arr = new Array;
+      for (let i = 0; i < answerWord.length; i++){
+        arr[i] = answerWord[i];
+      }
+
+      for(let i = 1; i <= 16; i++) {
+        const myDiv = document.createElement('div');
+        content.appendChild(myDiv);
+      }
+
+      function random(number) {
+        return Math.floor(Math.random() * number);
+      }
+
+      function bgChange() {
+        const rndCol = 'rgb(' + random(255) + ',' + random(255) + ',' + random(255) + ')';
+        return rndCol;
+      }
+
+      const divs = document.querySelectorAll('div');
+
+      for(let i = 0; i < divs.length; i++) {
+        let j = 0;
+        let num = 0;
+        //let arr = anserWord;
+        divs[i].onclick = function(e) {
+          e.target.style.backgroundColor = bgChange();
+          while( j === 0 ){
+            if(i < answerText.length){
+              const text = document.createTextNode(answerText[i]);
+              divs[i].appendChild(text);
+            }else if (i < answerText.length + answerWord.length){
+              do {
+                //let num = random(answerWord.length);
+                num = random(answerWord.length);
+              }while(arr[num] === null);
+                const text = document.createTextNode(arr[num]);
+                divs[i].appendChild(text);
+                arr[num] = null;
+
+              /*  const text = document.createTextNode(answerWord[i-answerText.length]);
+              divs[i].appendChild(text);*/
+            }else if(i == answerText.length + answerWord.length){
+                const text = document.createTextNode('.');
+                divs[i].appendChild(text);
+            }else{
+              const text = document.createTextNode('');
+            }
+          
+         
+          j++;
+          }
+        }
+
+      }
+ 
+      /*btn.onclick = function(){
+        para.textContent = answerText + answerWord + '.';  
+      }*/
+
+      function showAnswer(){
+        const btn = document.getElementById('answer');   
+        const para = document.querySelector('.myAnswer');
+
+        console.log("para.style.display: " + para.style.display);
+        
+        if (para.style.display === "") {
+            para.style.display = "block";
+            btn.innerHTML = 'Hide answer';
+            btn.style.checked = true;
+        } else {
+                para.style.display = "";
+                btn.innerHTML = 'Show answer';
+                btn.style.checked = false;
+          }
+      }
+      btnReset.onclick = function(){
+        location.reload();
+      }
+    </script>
+  </body>
+</html>
