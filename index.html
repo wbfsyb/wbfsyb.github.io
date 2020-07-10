@@ -4,40 +4,52 @@
     <meta charset="utf-8">
     <title>Guess What</title>
     <link href="https://fonts.googleapis.com/css2?family=Yellowtail&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
     <style>
+      *{
+
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+      }
       button {
+        margin-top: 30px;
         border: 1px solid black;
         border-radius: 4px;
+        width: 40%;
         padding: 10px 20px;
         font-size: 1rem;
         text-align: center;
         background-color: white;
-        margin-top: 30px;
-        margin-right: 20px;
+
       }
       button:active {
         background-color: #333333;
         color: white;
-        border: none;
       }
       button:checked {
         background-color: #333333;
         color: white;
-        border: none;
       }
 
       div {
+        padding: 30px 0 0 0;
         background-color: lightgrey;
         height: 100px;
         width: 25%;
         float: left;
         text-align: center;
         color: white;
-        font: 3em 'Yellowtail', cursive;
+        font: 3em 'Montserrat', sans-serif;
+        font-weight: 700;
       }
 
       .myAnswer{
-          display: none;
+        display: none;
+        font-weight: 500;
+        background-color: #d1fcdc;
+        padding: 10px 10px 10px 20px ;
+        border-radius: 4px;
+        color: green;
       }
      
     </style>
